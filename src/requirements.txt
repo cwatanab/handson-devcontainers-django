@@ -1,0 +1,5 @@
+asgiref
+django~=4.2
+psycopg[binary]
+sqlparse
+tzdata

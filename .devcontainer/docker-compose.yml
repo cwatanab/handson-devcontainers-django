@@ -1,0 +1,32 @@
+services:
+  django:
+    image: mcr.microsoft.com/devcontainers/python:3.11
+    ports:
+      - 8000:8000
+    volumes:
+      - ..:/workspace:cached
+    environment:
+      DJANGO_SECRET_KEY: xxxxx
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    tty: true
+    stdin_open: true
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16.6
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data:cached
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+volumes:
+  pgdata:
